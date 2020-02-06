@@ -10,7 +10,11 @@
 
 // 8cfa14c1d900fdb373cd185f1f9c9c7f
 $(document).ready(function() {
-  var query = 'ritorno al futuro';
+  $('#button').click(function() {
+
+  var query = $('.input').val('');
+  console.log(query);
+
   $.ajax(
     {
       url: "https://api.themoviedb.org/3/search/movie",
@@ -21,12 +25,18 @@ $(document).ready(function() {
       },
       success: function (data) {
         var films = data.results;
-        printFilm(films);
+        console.log(films);
+          printFilm(films);
+          if (query == films) {
+            query.show();
+          }
+
      },
       error: function (richiesta, stato, errors) {
         console.log(errors);
       }
     });
+  });
 });
 
 function printFilm(films) {
@@ -36,19 +46,13 @@ function printFilm(films) {
   for (var i = 0; i < films.length; i++) {
     // (singolo oggetto(film))
     var thisFilm = films[i];
-    console.log(thisFilm);
     // var context = {
     //   title : thisFilm.title,
     //   original_title: thisFilm.original_title,
     //   original_language: thisFilm.original_language,
     //   vote_average: thisFilm.vote_average,
     // }
-
     var html = template(thisFilm);
     $('.lista-film').append(html);
   }
 }
-// "title": "Ritorno al futuro",
-// "original_language": "en",
-// "original_title": "Back to the Future",
-// "vote_average": 8.2,
