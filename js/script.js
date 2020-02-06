@@ -12,7 +12,7 @@
 $(document).ready(function() {
   $('#button').click(function() {
 
-  var query = $('.input').val('');
+  var query = $('.input').val();
   console.log(query);
 
   $.ajax(
