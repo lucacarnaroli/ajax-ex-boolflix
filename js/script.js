@@ -56,3 +56,31 @@ function printFilm(films) {
     $('.lista-film').append(html);
   }
 }
+
+$('.input').keypress(function(event) {
+  if (event.which == 13) {
+    var query = $('.input').val();
+    $.ajax(
+      {
+        url: "https://api.themoviedb.org/3/search/movie",
+        method: "GET",
+        data: {
+          api_key: '8cfa14c1d900fdb373cd185f1f9c9c7f',
+          query: query,
+          language: 'it-IT',
+        },
+        success: function (data) {
+          var films = data.results;
+          console.log(films);
+
+          $('.lista-film').html('');
+            printFilm(films);
+            var query = $('.input').val('');
+       },
+        error: function (richiesta, stato, errors) {
+          console.log(errors);
+        }
+      });
+  }
+
+})
