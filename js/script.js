@@ -12,7 +12,7 @@
 $(document).ready(function() {
   $('#button').click(function() {
 
-  var query = $('.input').val();
+  var query = $('.input').val('');
   console.log(query);
 
   $.ajax(
@@ -28,7 +28,8 @@ $(document).ready(function() {
         console.log(films);
           printFilm(films);
           if (query == films) {
-            query.show();
+            $('.lista-film').html('').append(films);
+
           }
 
      },
