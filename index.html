@@ -7,12 +7,14 @@
     <title>boolflix</title>
   </head>
   <body>
+    <input type="text" name="" value="" placeholder="Quale film vuoi vedere?">
+    <button type="button" name="button">Cerca</button>
 
     <ul class="lista-film"></ul>
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li>{{}}</li>
+      <li>{{title}}-{{original_title}}-{{original_language}}- {{vote_average}}</li>
     </script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
