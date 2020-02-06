@@ -12,8 +12,7 @@
 $(document).ready(function() {
   $('#button').click(function() {
 
-  var query = $('.input').val('');
-  console.log(query);
+  var query = $('.input').val();
 
   $.ajax(
     {
@@ -22,15 +21,14 @@ $(document).ready(function() {
       data: {
         api_key: '8cfa14c1d900fdb373cd185f1f9c9c7f',
         query: query,
+        language: 'it-IT',
       },
       success: function (data) {
         var films = data.results;
         console.log(films);
+        $('.lista-film').html('');
           printFilm(films);
-          if (query == films) {
-            $('.lista-film').html('').append(films);
 
-          }
 
      },
       error: function (richiesta, stato, errors) {
