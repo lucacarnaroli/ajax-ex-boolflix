@@ -19,6 +19,7 @@ $(document).ready(function() {
    var query = $('.input').val();
    deleteInput(query);
    callServer(query);
+   callServerTv(query);
 
   });
 // comando tastiera
@@ -27,6 +28,7 @@ $(document).ready(function() {
       var query = $('.input').val();
       deleteInput(query);
       callServer(query);
+      callServerTv(query);
     }
   });
 });
@@ -34,7 +36,7 @@ $(document).ready(function() {
 // FUNZIONI ----------------------------------------------
 
 // stampa film
-function printFilm(films,tipo) {
+function printFilm(films) {
   var source = $('#entry-template').html();
   var template = Handlebars.compile(source);
 
@@ -43,17 +45,17 @@ function printFilm(films,tipo) {
     // (singolo oggetto(film))
     var thisFilm = films[i];
 
-    if(tipo == 'movie') {
-      var titolo = thisFilm.title;
-      var titoloOriginale = thisFilm.original_title;
-
-    } else {
-      var titolo = thisFilm.name;
-      var titoloOriginale = thisFilm.original_name;
-    }
+    // if(tipo == 'movie') {
+    //   var titolo = thisFilm.title;
+    //   var titoloOriginale = thisFilm.original_title;
+    //
+    // } else {
+    //   var titolo = thisFilm.name;
+    //   var titoloOriginale = thisFilm.original_name;
+    // }
     var context = {
-      'title': titolo,
-      'original_title': titoloOriginale,
+      'title': thisFilm.title,
+      'original_title': thisFilm.original_title,
       'original_language': printFlag(thisFilm.original_language),
       'vote_average': thisFilm.vote_average,
       'star': printStar(thisFilm.vote_average)
@@ -61,7 +63,27 @@ function printFilm(films,tipo) {
     var html = template(context);
     $('.lista-film').append(html);
   }
-  return
+
+}
+
+// Stampa serire tv
+function printTv(serie) {
+  var source = $('#serie-tv').html();
+  var template = Handlebars.compile(source);
+  for (var i = 0; i < serie.length; i++) {
+    var thisSerie = serie[i];
+    console.log(thisSerie);
+    var context = {
+      'name': thisSerie.name,
+      'original_name' : thisSerie.original_name,
+      'original_language': printFlag(thisSerie.original_language),
+      'vote_average': thisSerie.vote_average,
+      'star': printStar(thisSerie.vote_average)
+    }
+    var html = template(context);
+    $('.lista-film').append(html);
+  }
+
 }
 
 // chiamta api
@@ -101,7 +123,7 @@ function callServerTv(string) {
         var serie = data.results;
         console.log(serie);
 
-        printFilm(films,tipo);
+        printTv(serie);
         totalResult(data);
     },
       error: function (richiesta, stato, errors) {
