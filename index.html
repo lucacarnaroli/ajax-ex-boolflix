@@ -22,10 +22,15 @@
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li><h3>Titolo :{{title}}</h3></li>
-      <li>Titolo originale :{{original_title}}</li>
-      <li>Lingua :{{original_language}}</li>
-      <li>Voto : {{vote_average}} {{{star}}}</li>
+
+      <ul>
+      <li><h3>Titolo :{{title}}</h3>
+      Titolo originale :{{original_title}} <br>
+      Lingua :{{{original_language}}} <br>
+      Voto : {{vote_average}} - {{{star}}}</li>
+      </ul>
+      
+
     </script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
