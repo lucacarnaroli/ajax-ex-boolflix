@@ -4,18 +4,26 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.js" integrity="sha256-v28e/OFwH4PmlZT+LbqfwlMOE1hImPNesl1Ha52e6pk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>boolflix</title>
   </head>
   <body>
-
-    <input  class="input" type="text" name="" value="" placeholder="Quale film vuoi vedere?">
+    <h1 class="boolflix">Boolflix</h1>
+  <div class="search">
+    <input class="input" type="text" name="" value="" placeholder="Quale film vuoi vedere?">
     <button id="button" type="button" name="button">Cerca</button>
+  </div>
 
+  <div class="box-list">
     <ul class="lista-film"></ul>
+  </div>
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li>{{title}}-{{original_title}}-{{original_language}}- {{vote_average}}</li>
+      <li><h3>Titolo :{{title}}</h3></li>
+      <li>Titolo originale :{{original_title}}</li>
+      <li>Lingua :{{original_language}}</li>
+      <li>Voto : {{vote_average}}</li>
     </script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>

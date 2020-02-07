@@ -1,0 +1,39 @@
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+body {
+  background-color: #000;
+}
+.boolflix {
+  color: red;
+  margin: 30px;
+}
+.input {
+  width: 130px;
+  height: 30px;
+  padding: 5px;
+  background-color: white;
+}
+#button {
+  margin-left: 10px;
+  padding: 4px;
+}
+.search {
+  margin: 30px;
+}
+.lista-film {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.lista-film li {
+  margin: 30px;
+  list-style: none;
+  border: 1px solid black;
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+} */
