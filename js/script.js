@@ -19,15 +19,13 @@ $(document).ready(function() {
    deleteInput(query);
    callServer(query);
 
-
-
   });
-
+// comando tastiera
   $('.input').keypress(function(event) {
     if (event.which == 13) {
       var query = $('.input').val();
-      callServer(query);
       deleteInput(query);
+      callServer(query);
     }
   });
 });
@@ -42,11 +40,18 @@ function printFilm(films) {
   for (var i = 0; i < films.length; i++) {
     // (singolo oggetto(film))
     var thisFilm = films[i];
+    var context = {
+      'title': thisFilm.title,
+      'original_title': thisFilm.original_title,
+      'lang': thisFilm.original_language,
+      'vote': thisFilm.vote_average,
+      'star': printStar(thisFilm.vote_average)
+    }
     var html = template(thisFilm);
     $('.lista-film').append(html);
   }
 }
-// comando tastiera
+
 
 // chiamta api
 function callServer(string) {
@@ -65,11 +70,6 @@ function callServer(string) {
 
         printFilm(films);
         totalResult(data);
-        numInt(data);
-        numInt(data);
-        numInt(data);
-
-
     },
       error: function (richiesta, stato, errors) {
         console.log(errors);
@@ -87,7 +87,15 @@ function totalResult(data) {
     alert('Film non trovato!');
   }
 }
-function numInt(num) {
-  var num = data.vote_average;
-  var numInt = Math.ceil(num);
+function printStar(vote) {
+  vote = Math.round(vote / 2);
+  var star = '';
+  for (var i = 1; i <= 5; i++) {
+    if (i <= vote) {
+      star += '<i class="fas fa-star"></i>';
+    } else {
+      star += '<i class="far fa-star"></i>';
+    }
+  }
+  return star
 }
