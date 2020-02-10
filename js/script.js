@@ -20,7 +20,6 @@ $(document).ready(function() {
    deleteInput(query);
    callServer(query);
    callServerTv(query);
-
   });
 // comando tastiera
   $('.input').keypress(function(event) {
@@ -42,6 +41,7 @@ function printFilm(type, result) {
   var title;
   var originalTitle;
 
+
   for (var i = 0; i < result.length; i++) {
     // (singolo oggetto(film))
     var thisFilm = result[i];
@@ -49,11 +49,12 @@ function printFilm(type, result) {
     if (type == 'film') {
       title = thisFilm.title;
       originalTitle = thisFilm.original_title;
+
     } else if (type == 'serie tv') {
       title = thisFilm.name;
       originalTitle = thisFilm.original_name;
     }
-
+    var urlImg = 'https://image.tmdb.org/t/p/w342';
     var context = {
       'type': type,
       'title': title,
@@ -61,12 +62,11 @@ function printFilm(type, result) {
       'original_language': printFlag(thisFilm.original_language),
       'vote_average': thisFilm.vote_average,
       'star': printStar(thisFilm.vote_average),
-      'poster_path': thisFilm.poster_path
+      'poster_path': urlImg + (thisFilm.poster_path)
     }
     var html = template(context);
     $('.lista-film').append(html);
   }
-
 }
 
 // chiamta api
@@ -79,14 +79,12 @@ function callServer(string) {
         api_key: '8cfa14c1d900fdb373cd185f1f9c9c7f',
         query: string,
         language: 'it-IT',
-        img: "https://image.tmdb.org/t/p/w500",
     },
       success: function (data) {
         var films = data.results;
         console.log(films);
         printFilm('film', films);
         totalResult(data);
-
     },
       error: function (richiesta, stato, errors) {
         alert('errors');
@@ -102,14 +100,12 @@ function callServerTv(string) {
         api_key: 'e99307154c6dfb0b4750f6603256716d',
         query: string,
         language: 'it-IT',
-        // img: "https://image.tmdb.org/t/p/w500",
     },
       success: function (data) {
         var serie = data.results;
         console.log(serie);
         printFilm('serie tv', serie);
         totalResult(data);
-
     },
       error: function (richiesta, stato, errors) {
         alert('errors');
