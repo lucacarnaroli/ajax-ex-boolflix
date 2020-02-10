@@ -87,7 +87,7 @@ function callServer(string) {
         totalResult(data);
     },
       error: function (richiesta, stato, errors) {
-        alert('errors');
+        alert('errors'+errors);
       }
     });
 }
@@ -108,7 +108,7 @@ function callServerTv(string) {
         totalResult(data);
     },
       error: function (richiesta, stato, errors) {
-        alert('errors');
+        alert('errors'+ errors);
       }
     });
 }
