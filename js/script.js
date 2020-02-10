@@ -54,7 +54,7 @@ function printFilm(type, result) {
       title = thisFilm.name;
       originalTitle = thisFilm.original_name;
     }
-    var urlImg = 'https://image.tmdb.org/t/p/w342';
+    var urlImg = 'https://image.tmdb.org/t/p/w200/';
     var context = {
       'type': type,
       'title': title,

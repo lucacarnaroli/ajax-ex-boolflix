@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
 }
 .lista-film li {
   margin: 20px;
@@ -36,4 +37,7 @@ body {
   width: 300px;
   padding: 20px;
   background-color: white;
+}
+.post {
+
 }
