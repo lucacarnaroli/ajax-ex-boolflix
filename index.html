@@ -23,7 +23,7 @@
 
     <script id="entry-template" type="text/x-handlebars-template">
       <ul>
-        <li><h3>Titolo :{{title}}</h3>
+        <li><h4>{{type}}</h4> <br> <h3>Titolo :{{title}}</h3>
         Titolo originale :{{original_title}} <br>
         Lingua :{{{original_language}}} <br>
         Voto : {{vote_average}} - {{{star}}}</li>
@@ -31,10 +31,12 @@
     </script>
     <script id="serie-tv" type="text/x-handlebars-template">
       <ul>
-        <li><h3>Titolo serie tv :{{name}}</h3>
+        <li><h4>{{type}}</h4> <br> <h3>Titolo serie tv :{{name}}</h3>
         Titolo originale :{{original_name}} <br>
         Lingua :{{{original_language}}} <br>
-        Voto : {{vote_average}} - {{{star}}}</li>
+        Voto : {{vote_average}} - {{{star}}} <br>
+        {{{poster_path}}}
+      </li>
       </ul>
     </script>
     <script src="js/script.js" charset="utf-8"></script>

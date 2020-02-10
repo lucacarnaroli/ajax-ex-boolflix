@@ -36,49 +36,32 @@ $(document).ready(function() {
 // FUNZIONI ----------------------------------------------
 
 // stampa film
-function printFilm(films) {
+function printFilm(type, result) {
   var source = $('#entry-template').html();
   var template = Handlebars.compile(source);
+  var title;
+  var originalTitle;
 
-
-  for (var i = 0; i < films.length; i++) {
+  for (var i = 0; i < result.length; i++) {
     // (singolo oggetto(film))
-    var thisFilm = films[i];
+    var thisFilm = result[i];
 
-    // if(tipo == 'movie') {
-    //   var titolo = thisFilm.title;
-    //   var titoloOriginale = thisFilm.original_title;
-    //
-    // } else {
-    //   var titolo = thisFilm.name;
-    //   var titoloOriginale = thisFilm.original_name;
-    // }
+    if (type == 'film') {
+      title = thisFilm.title;
+      originalTitle = thisFilm.original_title;
+    } else if (type == 'serie tv') {
+      title = thisFilm.name;
+      originalTitle = thisFilm.original_name;
+    }
+
     var context = {
-      'title': thisFilm.title,
-      'original_title': thisFilm.original_title,
+      'type': type,
+      'title': title,
+      'original_title': originalTitle,
       'original_language': printFlag(thisFilm.original_language),
       'vote_average': thisFilm.vote_average,
-      'star': printStar(thisFilm.vote_average)
-    }
-    var html = template(context);
-    $('.lista-film').append(html);
-  }
-
-}
-
-// Stampa serire tv
-function printTv(serie) {
-  var source = $('#serie-tv').html();
-  var template = Handlebars.compile(source);
-  for (var i = 0; i < serie.length; i++) {
-    var thisSerie = serie[i];
-    console.log(thisSerie);
-    var context = {
-      'name': thisSerie.name,
-      'original_name' : thisSerie.original_name,
-      'original_language': printFlag(thisSerie.original_language),
-      'vote_average': thisSerie.vote_average,
-      'star': printStar(thisSerie.vote_average)
+      'star': printStar(thisFilm.vote_average),
+      'poster_path': thisFilm.poster_path
     }
     var html = template(context);
     $('.lista-film').append(html);
@@ -90,19 +73,20 @@ function printTv(serie) {
 function callServer(string) {
   $.ajax(
     {
-      url: "https://api.themoviedb.org/3/search/movie",
+      url: "https://api.themoviedb.org/3/search/movie/",
       method: "GET",
       data: {
         api_key: '8cfa14c1d900fdb373cd185f1f9c9c7f',
         query: string,
         language: 'it-IT',
+        img: "https://image.tmdb.org/t/p/w500",
     },
       success: function (data) {
         var films = data.results;
         console.log(films);
-
-        printFilm(films);
+        printFilm('film', films);
         totalResult(data);
+
     },
       error: function (richiesta, stato, errors) {
         alert('errors');
@@ -112,19 +96,20 @@ function callServer(string) {
 function callServerTv(string) {
   $.ajax(
     {
-      url: "https://api.themoviedb.org/3/search/tv",
+      url: "https://api.themoviedb.org/3/search/tv/",
       method: "GET",
       data: {
         api_key: 'e99307154c6dfb0b4750f6603256716d',
         query: string,
         language: 'it-IT',
+        // img: "https://image.tmdb.org/t/p/w500",
     },
       success: function (data) {
         var serie = data.results;
         console.log(serie);
-
-        printTv(serie);
+        printFilm('serie tv', serie);
         totalResult(data);
+
     },
       error: function (richiesta, stato, errors) {
         alert('errors');
@@ -138,13 +123,11 @@ function deleteInput(string) {
 }
 // contenuto non trovato + mess
 function totalResult(data) {
-  if (!data.total_results > 0) {
+  if (data.total_results === 0) {
     alert('Film non trovato!');
   }
+  return
 }
-//img/it.png
-//'<img src="img/' + lang + '.png">'
-
 
 // stampa stella
 function printStar(vote) {
@@ -165,9 +148,7 @@ function printFlag(lang) {
   var arrayLang = ['it','es','en','fr','ja','da','tr','de','pt','cn','nl'];
   // se data.original_language(lang) è incluso nell'array, prendi l'img
   if (arrayLang.includes(lang)) {
-    var flag = '<img src="flags-mini/' + lang + '.png">';
-  } else {
-    return lang
+    var lang = '<img src="flags-mini/' + lang + '.png">';
   }
-  return flag
+  return lang
 }

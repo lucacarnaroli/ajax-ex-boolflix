@@ -9,7 +9,7 @@ body {
 }
 .boolflix {
   color: red;
-  margin: 30px;
+  margin: 20px;
 }
 .input {
   width: 130px;
@@ -22,7 +22,7 @@ body {
   padding: 4px;
 }
 .search {
-  margin: 30px;
+  margin: 20px;
 }
 .lista-film {
   display: flex;
@@ -30,7 +30,7 @@ body {
   flex-wrap: wrap;
 }
 .lista-film li {
-  margin: 30px;
+  margin: 20px;
   list-style: none;
   border: 1px solid black;
   width: 300px;
