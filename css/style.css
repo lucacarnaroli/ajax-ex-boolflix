@@ -62,7 +62,7 @@ body {
   width: 200px;
   margin: 5px;
   padding: 5px;
-  background-color: rgba(181, 184, 182,0.9);
+  background-color: rgba(231, 230, 228,0.8);
   overflow-y: auto;
   display: none;
 }

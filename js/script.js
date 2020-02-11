@@ -31,14 +31,14 @@ $(document).ready(function() {
       callServerTv(query);
     }
   });
-
+  // hover
   $(document).on('mouseenter','.list-box',function() {
     $(this).find('.lista-program').addClass('active');
-    console.log($(this));
   });
   $(document).on('mouseleave','.list-box',function() {
     $(this).find('.lista-program').removeClass('active');
   });
+
 });
 
 // FUNZIONI ----------------------------------------------
@@ -64,6 +64,7 @@ function printResult(type, result) {
     }
     var urlImg = 'https://image.tmdb.org/t/p/w200/';
     var post;
+    // post Null
     if (thisFilm.poster_path == null) {
       post = '<img src="img/not_found.jpg" alt="">';
     } else {
@@ -120,7 +121,7 @@ function callServerTv(string) {
       url: "https://api.themoviedb.org/3/search/tv",
       method: "GET",
       data: {
-        api_key: 'e99307154c6dfb0b4750f6603256716d',
+        api_key: '8cfa14c1d900fdb373cd185f1f9c9c7f',
         query: string,
         language: 'it-IT',
     },
