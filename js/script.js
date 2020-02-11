@@ -76,9 +76,9 @@ function printResult(type, result) {
     var urlImg = 'https://image.tmdb.org/t/p/w200/';
     var post;
     if (thisFilm.poster_path == null) {
-      post = '<img src="img/not_found.jpg" alt="title">';
+      post = '<img src="img/not_found.jpg" alt="">';
     } else {
-      post = '<img src="'+ urlImg + thisFilm.poster_path +'" alt="title">'
+      post = '<img src="'+ urlImg + thisFilm.poster_path +'" alt="">'
     }
     console.log(post);
 

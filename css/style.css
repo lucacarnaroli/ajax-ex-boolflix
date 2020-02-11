@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -55,17 +55,15 @@ body {
 }
 .lista-film li {
   position: absolute;
-  height: 300px;
-  width: 200px;
-  margin: 10px  ;
+  height: auto;
+  width: auto;
+  padding: 10px  ;
   list-style: none;
   padding: 15px;
   background-color: rgba(181, 184, 182,0.7);
   display: none;
 }
-/* .active {
-  display: none;
-} */
 .post {
-  margin: 10px;
-}
+  padding: 5px;
+
+} */
