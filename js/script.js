@@ -20,6 +20,7 @@ $(document).ready(function() {
    deleteInput(query);
    callServer(query);
    callServerTv(query);
+
   });
 // comando tastiera
   $('.input').keypress(function(event) {
@@ -30,12 +31,20 @@ $(document).ready(function() {
       callServerTv(query);
     }
   });
+  // $('.lista-film li').mouseenter(function() {
+  //   $('.lista-film li').show();
+  // });
+  // $('.lista-film li').mouseleave(function() {
+  //   $('.lista-film li').hide();
+  // });
+
+
 });
 
 // FUNZIONI ----------------------------------------------
 
 // stampa film
-function printFilm(type, result) {
+function printResult(type, result) {
   var source = $('#entry-template').html();
   var template = Handlebars.compile(source);
   var title;
@@ -50,11 +59,11 @@ function printFilm(type, result) {
       title = thisFilm.title;
       originalTitle = thisFilm.original_title;
 
-    } else if (type == 'serie tv') {
+    } else if (type == 'serie-tv') {
       title = thisFilm.name;
       originalTitle = thisFilm.original_name;
     }
-    var urlImg = 'https://image.tmdb.org/t/p/w200/';
+
     var context = {
       'type': type,
       'title': title,
@@ -62,8 +71,17 @@ function printFilm(type, result) {
       'original_language': printFlag(thisFilm.original_language),
       'vote_average': thisFilm.vote_average,
       'star': printStar(thisFilm.vote_average),
-      'poster_path': urlImg + (thisFilm.poster_path)
+      'poster_path': post
     }
+    var urlImg = 'https://image.tmdb.org/t/p/w200/';
+    var post;
+    if (thisFilm.poster_path == null) {
+      post = '<img src="img/not_found.jpg" alt="title">';
+    } else {
+      post = '<img src="'+ urlImg + thisFilm.poster_path +'" alt="title">'
+    }
+    console.log(post);
+
     var html = template(context);
     $('.lista-film').append(html);
   }
@@ -73,7 +91,7 @@ function printFilm(type, result) {
 function callServer(string) {
   $.ajax(
     {
-      url: "https://api.themoviedb.org/3/search/movie/",
+      url: "https://api.themoviedb.org/3/search/movie",
       method: "GET",
       data: {
         api_key: '8cfa14c1d900fdb373cd185f1f9c9c7f',
@@ -83,18 +101,21 @@ function callServer(string) {
       success: function (data) {
         var films = data.results;
         console.log(films);
-        printFilm('film', films);
-        totalResult(data);
+        printResult('film', films);
+        // totalResult(data);
+        if (data.total_results === 0) {
+          alert('Film non trovato!');
+        }
     },
-      error: function (richiesta, stato, errors) {
-        alert('errors'+errors);
+      error: function (richiesta, stato, errore) {
+        alert('errors'+errore);
       }
     });
 }
 function callServerTv(string) {
   $.ajax(
     {
-      url: "https://api.themoviedb.org/3/search/tv/",
+      url: "https://api.themoviedb.org/3/search/tv",
       method: "GET",
       data: {
         api_key: 'e99307154c6dfb0b4750f6603256716d',
@@ -104,25 +125,22 @@ function callServerTv(string) {
       success: function (data) {
         var serie = data.results;
         console.log(serie);
-        printFilm('serie tv', serie);
-        totalResult(data);
+        printResult('serie-tv', serie);
+        // totalResult(data);
+        if (data.total_results === 0) {
+          alert('Serie tv non trovata!');
+        }
+
     },
-      error: function (richiesta, stato, errors) {
-        alert('errors'+ errors);
+      error: function (richiesta, stato, errore) {
+        alert('errors'+ errore);
       }
     });
 }
 // formattazione contenuto prec
-function deleteInput(string) {
+function deleteInput() {
   $('.lista-film').html('');
-  var string = $('.input').val('');
-}
-// contenuto non trovato + mess
-function totalResult(data) {
-  if (data.total_results === 0) {
-    alert('Film non trovato!');
-  }
-  return
+  $('.input').val('');
 }
 
 // stampa stella

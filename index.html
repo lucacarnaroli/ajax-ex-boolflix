@@ -10,24 +10,38 @@
     <title>boolflix</title>
   </head>
   <body>
-    <h1 class="boolflix">Boolflix</h1>
-  <div class="search">
-    <input class="input" type="text" name="" value="" placeholder="Quale film vuoi vedere?">
-    <button id="button" type="button" name="button">Cerca</button>
+  <div class="header">
+    <div class="header-menu">
+      <h1 class="boolflix">Boolflix</h1>
+      <ul class="menu">
+        <li>Home</li>
+        <li>Film</li>
+        <li>Serie tv</li>
+      </ul>
+    </div>
+    <div class="search">
+      <input class="input" type="text" name="" value="" placeholder="Quale film vuoi vedere?">
+      <button id="button" type="button" name="button">Cerca</button>
+    </div>
   </div>
 
   <div class="box-list">
-    <ul class="lista-film"></ul>
+    <ul class="lista-film">
+      <!-- <li class=""></li> -->
+    </ul>
   </div>
 
 
     <script id="entry-template" type="text/x-handlebars-template">
       <ul>
-        <li><h4>{{type}}</h4> <br> <h3>Titolo :{{title}}</h3>
+
+        <li>
+        <h4>{{type}}</h4> <br>
+        <h3>Titolo :{{title}}</h3> <br>
         Titolo originale :{{original_title}} <br>
         Lingua :{{{original_language}}} <br>
-        Voto : {{vote_average}} - {{{star}}}
-        <img class="post" src="{{poster_path}}" alt="post"></li>
+        Voto : {{vote_average}} - {{{star}}}</li>
+        <div class="post">{{{poster_path}}}</div>
       </ul>
 
     </script>

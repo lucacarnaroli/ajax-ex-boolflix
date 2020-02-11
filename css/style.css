@@ -9,7 +9,29 @@ body {
 }
 .boolflix {
   color: red;
-  margin: 20px;
+  margin: 30px;
+}
+.menu {
+  margin: 40px;
+}
+.menu li{
+  color: #fff;
+  display: inline;
+  list-style: none;
+  margin: 5px;
+  font-size: 15px;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.header-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .input {
   width: 130px;
@@ -22,22 +44,28 @@ body {
   padding: 4px;
 }
 .search {
-  margin: 20px;
+  margin: 40px;
 }
 .lista-film {
+  position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
-
 }
 .lista-film li {
-  margin: 20px;
+  position: absolute;
+  height: 300px;
+  width: 200px;
+  margin: 10px  ;
   list-style: none;
-  border: 1px solid black;
-  width: 300px;
-  padding: 20px;
-  background-color: white;
+  padding: 15px;
+  background-color: rgba(181, 184, 182,0.7);
+  display: none;
 }
+/* .active {
+  display: none;
+} */
 .post {
-
+  margin: 10px;
 }
