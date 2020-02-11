@@ -31,14 +31,7 @@ $(document).ready(function() {
       callServerTv(query);
     }
   });
-  // $('.lista-film li').mouseenter(function() {
-  //   $('.lista-film li').show();
-  // });
-  // $('.lista-film li').mouseleave(function() {
-  //   $('.lista-film li').hide();
-  // });
-
-
+hover();
 });
 
 // FUNZIONI ----------------------------------------------
@@ -49,7 +42,6 @@ function printResult(type, result) {
   var template = Handlebars.compile(source);
   var title;
   var originalTitle;
-
 
   for (var i = 0; i < result.length; i++) {
     // (singolo oggetto(film))
@@ -63,6 +55,14 @@ function printResult(type, result) {
       title = thisFilm.name;
       originalTitle = thisFilm.original_name;
     }
+    var urlImg = 'https://image.tmdb.org/t/p/w200/';
+    var post;
+    if (thisFilm.poster_path == null) {
+      post = '<img src="img/not_found.jpg" alt="">';
+    } else {
+      post = '<img src="'+ urlImg + thisFilm.poster_path +'" alt="">'
+    };
+    console.log(post);
 
     var context = {
       'type': type,
@@ -71,16 +71,11 @@ function printResult(type, result) {
       'original_language': printFlag(thisFilm.original_language),
       'vote_average': thisFilm.vote_average,
       'star': printStar(thisFilm.vote_average),
+      'overview': thisFilm.overview,
       'poster_path': post
+
     }
-    var urlImg = 'https://image.tmdb.org/t/p/w200/';
-    var post;
-    if (thisFilm.poster_path == null) {
-      post = '<img src="img/not_found.jpg" alt="">';
-    } else {
-      post = '<img src="'+ urlImg + thisFilm.poster_path +'" alt="">'
-    }
-    console.log(post);
+
 
     var html = template(context);
     $('.lista-film').append(html);
@@ -165,4 +160,16 @@ function printFlag(lang) {
     var lang = '<img src="flags-mini/' + lang + '.png">';
   }
   return lang
+}
+
+function hover() {
+  $('.lista-program').hover(
+    function() {
+      $(this).removeClass('active');
+    },
+    function() {
+      $(this).addClass('active');
+    }
+  );
+
 }

@@ -25,22 +25,24 @@
     </div>
   </div>
 
-  <div class="box-list">
+
     <ul class="lista-film">
       <!-- <li class=""></li> -->
     </ul>
-  </div>
+
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <ul>
+      <ul class="lista">
 
-        <li>
-        <h4>{{type}}</h4> <br>
-        <h3>Titolo :{{title}}</h3> <br>
-        Titolo originale :{{original_title}} <br>
-        Lingua :{{{original_language}}} <br>
-        Voto : {{vote_average}} - {{{star}}}</li>
+        <li class="lista-program active">
+          <h4>{{type}}</h4> <br>
+          <h3>Titolo :{{title}}</h3> <br>
+          Titolo originale :{{original_title}} <br>
+          Lingua :{{{original_language}}} <br>
+          Voto : {{vote_average}} - {{{star}}}
+          Trama : <p class="overview">{{overview}}</p>
+        </li>
         <div class="post">{{{poster_path}}}</div>
       </ul>
 
