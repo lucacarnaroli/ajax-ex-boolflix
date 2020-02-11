@@ -31,7 +31,14 @@ $(document).ready(function() {
       callServerTv(query);
     }
   });
-hover();
+
+  $(document).on('mouseenter','.list-box',function() {
+    $(this).find('.lista-program').addClass('active');
+    console.log($(this));
+  });
+  $(document).on('mouseleave','.list-box',function() {
+    $(this).find('.lista-program').removeClass('active');
+  });
 });
 
 // FUNZIONI ----------------------------------------------
@@ -62,7 +69,7 @@ function printResult(type, result) {
     } else {
       post = '<img src="'+ urlImg + thisFilm.poster_path +'" alt="">'
     };
-    console.log(post);
+
 
     var context = {
       'type': type,
@@ -95,7 +102,7 @@ function callServer(string) {
     },
       success: function (data) {
         var films = data.results;
-        console.log(films);
+        // console.log(films);
         printResult('film', films);
         // totalResult(data);
         if (data.total_results === 0) {
@@ -119,7 +126,7 @@ function callServerTv(string) {
     },
       success: function (data) {
         var serie = data.results;
-        console.log(serie);
+        // console.log(serie);
         printResult('serie-tv', serie);
         // totalResult(data);
         if (data.total_results === 0) {
@@ -160,16 +167,4 @@ function printFlag(lang) {
     var lang = '<img src="flags-mini/' + lang + '.png">';
   }
   return lang
-}
-
-function hover() {
-  $('.lista-program').hover(
-    function() {
-      $(this).removeClass('active');
-    },
-    function() {
-      $(this).addClass('active');
-    }
-  );
-
 }

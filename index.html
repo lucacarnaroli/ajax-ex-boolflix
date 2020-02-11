@@ -33,18 +33,18 @@
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <ul class="lista">
+      <li class="list-box">
 
-        <li class="lista-program active">
+        <div class="lista-program">
           <h4>{{type}}</h4> <br>
           <h3>Titolo :{{title}}</h3> <br>
           Titolo originale :{{original_title}} <br>
           Lingua :{{{original_language}}} <br>
           Voto : {{vote_average}} - {{{star}}}
           Trama : <p class="overview">{{overview}}</p>
-        </li>
+        </div>
         <div class="post">{{{poster_path}}}</div>
-      </ul>
+      </li>
 
     </script>
 
