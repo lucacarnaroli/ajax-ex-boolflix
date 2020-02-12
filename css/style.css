@@ -10,16 +10,17 @@ body {
 .boolflix {
   color: red;
   margin: 30px;
+  font-size: 45px;
 }
 .menu {
-  margin: 40px;
+  margin: 50px;
 }
 .menu li{
   color: #fff;
   display: inline;
   list-style: none;
   margin: 5px;
-  font-size: 15px;
+  font-size: 18px;
 }
 .header {
   display: flex;
@@ -34,7 +35,7 @@ body {
   flex-wrap: wrap;
 }
 .input {
-  width: 130px;
+  width: 200px;
   height: 30px;
   padding: 5px;
   background-color: white;
@@ -45,6 +46,7 @@ body {
 }
 .search {
   margin: 40px;
+  margin-right: 40px;
 }
 .lista-film {
   display: flex;
@@ -52,6 +54,8 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   list-style: none;
+  line-height: 20px;
+  padding: 30px;
 }
 .list-box {
   position: relative;
@@ -62,9 +66,16 @@ body {
   width: 200px;
   margin: 5px;
   padding: 5px;
-  background-color: rgba(231, 230, 228,0.8);
+  background-color: rgba(48, 48, 48,0.8);
   overflow-y: auto;
   display: none;
+  color: white;
+}
+.lista-program h4 {
+  margin-top: 10px;
+}
+.inline {
+  display: inline-block;
 }
 .active{
   display: block;
@@ -74,4 +85,18 @@ body {
 }
 .overview {
   font-size: 12px;
+}
+.star {
+  color: #FFD700;
+}
+.tipo {
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  line-height: 25px;
+}
+.box-tipo {
+  height: 25px;
+  width: 100%;
+  background-color: red;
 }

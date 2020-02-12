@@ -20,7 +20,6 @@ $(document).ready(function() {
    deleteInput(query);
    callServer(query);
    callServerTv(query);
-
   });
 // comando tastiera
   $('.input').keypress(function(event) {
@@ -38,6 +37,29 @@ $(document).ready(function() {
   $(document).on('mouseleave','.list-box',function() {
     $(this).find('.lista-program').removeClass('active');
   });
+  $('.next').click(
+    function () {
+      nextImg();
+    }
+  );
+
+  $('.prev').click(
+    function () {
+      prevImg();
+    }
+  );
+  // CLICK SUI PALLINI
+  $('.nav i').click(
+    function () {
+      var thisPosition = $(this).index();
+      var img = $('img').eq(thisPosition);
+      $('.nav i').removeClass('active');
+      $('img').removeClass('active');
+      img.addClass('active');
+      $(this).addClass('active');
+      console.log($(this).index());
+    }
+  );
 
 });
 
@@ -58,7 +80,7 @@ function printResult(type, result) {
       title = thisFilm.title;
       originalTitle = thisFilm.original_title;
 
-    } else if (type == 'serie-tv') {
+    } else if (type == 'serie tv') {
       title = thisFilm.name;
       originalTitle = thisFilm.original_name;
     }
@@ -128,7 +150,7 @@ function callServerTv(string) {
       success: function (data) {
         var serie = data.results;
         // console.log(serie);
-        printResult('serie-tv', serie);
+        printResult('serie tv', serie);
         // totalResult(data);
         if (data.total_results === 0) {
           alert('Serie tv non trovata!');

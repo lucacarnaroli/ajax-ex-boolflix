@@ -20,12 +20,15 @@
       </ul>
     </div>
     <div class="search">
-      <input class="input" type="text" name="" value="" placeholder="Quale film vuoi vedere?">
+      <input class="input" type="text" name="" value="" placeholder="Cosa vuoi vedere?">
       <button id="button" type="button" name="button">Cerca</button>
     </div>
   </div>
+  <div class="ricerca">
+    <h3></h3>
+  </div>
+  <div class="box"></div>
 
-  
 
 
     <ul class="lista-film">
@@ -38,12 +41,12 @@
       <li class="list-box">
 
         <div class="lista-program">
-          <h4>{{type}}</h4> <br>
-          <h3>Titolo :{{title}}</h3> <br>
-          Titolo originale :{{original_title}} <br>
-          Lingua : {{{original_language}}}<br>
-          <h4> Voto :</h4> {{vote_average}} - {{{star}}}
-          Trama : <p class="overview">{{overview}}</p>
+          <div class="box-tipo"><h2 class="tipo">{{type}}</h2></div> <br>
+          <h3>Titolo:</h3>{{title}} <br>
+          <h4>Titolo originale:</h4> {{original_title}} <br>
+          <h4 class="lingua inline">Lingua:</h4> {{{original_language}}} <br>
+          <h4 class="voto inline">Voto:</h4> {{vote_average}} <div class="star">{{{star}}}</div>
+          <h4>Trama:</h4> <p class="overview">{{overview}}</p>
         </div>
         <div class="post">{{{poster_path}}}</div>
       </li>
